@@ -26,6 +26,20 @@ private:
 	/*What to do with the rule (1 == possitve, 0 = neutral, -1 == negative)*/
 	int applyRule1, applyRule2, applyRule3, current;
 
+	/**
+	Handles the Windows Game input.
+	@param incomingEvent A reference to the incoming SDL event.
+	@returns If false then quit the Game State.
+	*/
+	bool windowsInput(SDL_Event& incomingEvent);
+
+	/**
+	Handles the Android Game input.
+	@param incomingEvent A reference to the incoming SDL event.
+	@returns If false then quit the Game State.
+	*/
+	bool androidInput(SDL_Event& incomingEvent);
+
 public:
 	/**
 	Constructs a Game object.

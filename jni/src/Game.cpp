@@ -48,102 +48,136 @@ bool Game::input()
 	SDL_Event incomingEvent;
 	while (SDL_PollEvent(&incomingEvent))
 	{
-		switch (incomingEvent.type)
+
+#ifdef __ANDROID__
+
+		/*handle the android inputs*/
+		return androidInput(incomingEvent);
+
+#elif _WIN32	
+
+		/*handle the windows inputs*/
+		return windowsInput(incomingEvent);
+
+#endif
+
+	}
+	return true;
+}
+
+/**************************************************************************************************************/
+
+/*handles windows inputs*/
+bool Game::windowsInput(SDL_Event& incomingEvent)
+{
+	switch (incomingEvent.type)
+	{
+	case SDL_QUIT: /*If quit is pressed, end the game loop*/
+
+		SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
+		return false;
+		break;
+
+	case SDL_KEYDOWN:
+
+		switch (incomingEvent.key.keysym.sym)
 		{
-		case SDL_QUIT: /*If quit is pressed, end the game loop*/
+		case SDLK_DELETE: /*If Delete is pressed, end the game loop*/
 
 			SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
 			return false;
 			break;
 
-#ifdef __ANDROID__
-
-		case SDL_FINGERDOWN:
-
-			/*update the current rule settings*/
-			current++;
-			if (current > 4)
-			{
-				current = 0;
-			}
-
-#endif
-
-		case SDL_KEYDOWN:
-
-			switch (incomingEvent.key.keysym.sym)
-			{
-			case SDLK_DELETE: /*If Delete is pressed, end the game loop*/
-
-				SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
-				return false;
-				break;
-
-			case SDLK_ESCAPE: /*If Escape is pressed, open menu*/
-				/*open up the help*/
-				stateManager->addState(new Help(stateManager, renderer, screenWidth, screenHeight, music));
-				return true;
-				break;
-
-			case SDLK_RETURN: /*If Enter is pressed all rules are active*/
-
-				/*activate all rules*/
-				current = 0;
-				break;
-
-			case SDLK_1: /*If 1 is pressed only rule 1 is active*/
-
-				/*activate rule 1 and deactivate all other rules*/
-				current = 1;
-				break;
-
-			case SDLK_2: /*If 2 is pressed only rule 2 is active*/
-
-				/*activate rule 2 and deactivate all other rules*/
-				current = 2;
-				break;
-
-			case SDLK_3: /*If 3 is pressed only rule 3 is active*/
-
-				/*activate rule3 and deactivate all other rules*/
-				current = 3;
-				break;
-
-			case SDLK_SPACE: /*If Space is pressed scatter the flock*/
-
-				/*activate rule 2 and 3 and invert rule 1*/
-				current = 4;
-				break;
-
-#ifdef __ANDROID__
-
-			case SDLK_AC_BACK: /*If Back is pressed on the phone, end the game loop*/
-
-				SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
-				return false;
-				break;
-
-#endif
-
-			}
+		case SDLK_ESCAPE: /*If Escape is pressed, open menu*/
+			/*open up the help*/
+			stateManager->addState(new Help(stateManager, renderer, screenWidth, screenHeight, music));
+			return true;
 			break;
 
-		case SDL_KEYUP:
+		case SDLK_RETURN: /*If Enter is pressed all rules are active*/
 
-			switch (incomingEvent.key.keysym.sym)
-			{
+			/*activate all rules*/
+			current = 0;
+			break;
 
-			case SDLK_SPACE: /*If Space is released activate all rules*/
+		case SDLK_1: /*If 1 is pressed only rule 1 is active*/
 
-				/*activate all rules*/
-				current = 0;
-				break;
-			}
+			/*activate rule 1 and deactivate all other rules*/
+			current = 1;
+			break;
+
+		case SDLK_2: /*If 2 is pressed only rule 2 is active*/
+
+			/*activate rule 2 and deactivate all other rules*/
+			current = 2;
+			break;
+
+		case SDLK_3: /*If 3 is pressed only rule 3 is active*/
+
+			/*activate rule3 and deactivate all other rules*/
+			current = 3;
+			break;
+
+		case SDLK_SPACE: /*If Space is pressed scatter the flock*/
+
+			/*activate rule 2 and 3 and invert rule 1*/
+			current = 4;
+			break;
+		}
+		break;
+
+	case SDL_KEYUP:
+
+		switch (incomingEvent.key.keysym.sym)
+		{
+
+		case SDLK_SPACE: /*If Space is released activate all rules*/
+
+			/*activate all rules*/
+			current = 0;
+			break;
 		}
 	}
 	return true;
 }
 
+/**************************************************************************************************************/
+
+/*handles android inputs*/
+bool Game::androidInput(SDL_Event& incomingEvent)
+{
+	switch (incomingEvent.type)
+	{
+	case SDL_QUIT: /*If quit is pressed, end the game loop*/
+
+		SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
+		return false;
+		break;
+
+	case SDL_FINGERDOWN:
+
+		/*update the current rule settings*/
+		current++;
+		if (current > 4)
+		{
+			current = 0;
+		}
+		break;
+
+	case SDL_KEYDOWN:
+
+		switch (incomingEvent.key.keysym.sym)
+		{
+		case SDLK_AC_BACK: /*If Back is pressed on the phone, end the game loop*/
+
+			SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
+			return false;
+			break;
+		}
+		break;
+	}
+	return true;
+}
 
 /**************************************************************************************************************/
 
