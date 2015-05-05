@@ -17,9 +17,20 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	/*initialise the flocking object*/
 	flocking = new JAM_Flocking(25, boidTexture, screenWidth, screenHeight, 25.0f);
 
+#ifdef _WIN32
+	
 	/*initialise the text*/
 	text.push_back(new JAM_Text("Hit Delete to Quit", "font/Underdog_tt_hinted.ttf", 25, renderer, 0, 0, 0));
 	text.push_back(new JAM_Text("Hit Escape for Help", "font/Underdog_tt_hinted.ttf", 25, renderer, 0, 0, 0));
+
+#elif __ANDROID__
+
+	/*initialise the text*/
+	text.push_back(new JAM_Text("Press the screen to change the Boids behaviour", "font/Underdog_tt_hinted.ttf",
+		72, renderer, 0, 0, 0));
+
+
+#endif
 
 	/*initialise the current rule setting*/
 	current = 0;
@@ -37,6 +48,10 @@ Game::~Game()
 	/*delete pointers*/
 	delete flocking;
 	delete boidTexture;
+	for (auto message : text)
+	{
+		delete message;
+	}
 }
 
 /**************************************************************************************************************/
@@ -247,7 +262,17 @@ void Game::draw()
 	/*draw the flocking object*/
 	flocking->draw(renderer);
 
+#ifdef _WIN32
+
 	/*display text*/
 	text[0]->pushToScreen(screenWidth - 210, 10);
 	text[1]->pushToScreen(10, 10);
+
+#elif __ANDROID__
+
+	/*display text*/
+	text[0]->pushToScreen(10, 10);
+
+#endif
+
 }
