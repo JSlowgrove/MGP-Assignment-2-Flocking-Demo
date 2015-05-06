@@ -20,14 +20,23 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 #ifdef _WIN32
 	
 	/*initialise the text*/
-	text.push_back(new JAM_Text("Hit Delete to Quit", "font/Underdog_tt_hinted.ttf", 25, renderer, 0, 0, 0));
-	text.push_back(new JAM_Text("Hit Escape for Help", "font/Underdog_tt_hinted.ttf", 25, renderer, 0, 0, 0));
+	text.push_back(new JAM_Text(
+		"Hit Delete to Quit", "font/Underdog_tt_hinted.ttf", 
+		(int)JAM_Utilities::scaleNumber(25.0f, screenHeight), 
+		renderer, 0, 0, 0));
+
+	text.push_back(new JAM_Text(
+		"Hit Escape for Help", "font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(25.0f, screenHeight),
+		renderer, 0, 0, 0));
 
 #elif __ANDROID__
 
 	/*initialise the text*/
-	text.push_back(new JAM_Text("Press the screen to change the Boids behaviour", "font/Underdog_tt_hinted.ttf",
-		72, renderer, 0, 0, 0));
+	text.push_back(new JAM_Text(
+		"Press the screen to change the Boids behaviour", "font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(25.0f, screenHeight), 
+		renderer, 0, 0, 0));
 
 
 #endif
@@ -265,13 +274,13 @@ void Game::draw()
 #ifdef _WIN32
 
 	/*display text*/
-	text[0]->pushToScreen(screenWidth - 210, 10);
-	text[1]->pushToScreen(10, 10);
+	text[0]->pushToScreen(screenWidth - (int)JAM_Utilities::scaleNumber(210.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
+	text[1]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
 
 #elif __ANDROID__
 
 	/*display text*/
-	text[0]->pushToScreen(10, 10);
+	text[0]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
 
 #endif
 

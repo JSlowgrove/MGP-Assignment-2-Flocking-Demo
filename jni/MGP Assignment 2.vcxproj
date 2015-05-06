@@ -22,6 +22,7 @@
     <ClCompile Include="src\JAM\StateManager.cpp" />
     <ClCompile Include="src\JAM\Text.cpp" />
     <ClCompile Include="src\JAM\Texture.cpp" />
+    <ClCompile Include="src\JAM\Utilities.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +37,7 @@
     <ClInclude Include="src\JAM\StateManager.h" />
     <ClInclude Include="src\JAM\Text.h" />
     <ClInclude Include="src\JAM\Texture.h" />
+    <ClInclude Include="src\JAM\Utilities.h" />
     <ClInclude Include="src\JAM\Vec2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

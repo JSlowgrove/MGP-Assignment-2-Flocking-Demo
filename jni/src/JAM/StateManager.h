@@ -28,13 +28,13 @@ public:
 
 	/**
 	Adds a new state to the current stack of states.
-	@param State * A pointer to the State in use.
+	@param state A pointer to the State in use.
 	*/
 	void addState(JAM_State* state);
 
 	/**
 	Changes the current State to a new State.
-	@param State * A pointer to the State in use.
+	@param state A pointer to the State in use.
 	*/
 	void changeState(JAM_State* state);
 
@@ -46,14 +46,14 @@ public:
 	/**
 	Handles the user input.
 	The input function that will allow the equivalent input function to run in the current State.
-	@returns bool If false then quit the application.
+	@returns If false then quit the application.
 	*/
 	bool input();
 
 	/**
 	Updates the current State.
 	The update function that will allow the equivalent update function to run in the current State.
-	@param float The delta time for use within the update function.
+	@param dt The delta time for use within the update function.
 	*/
 	void update(float dt);
 

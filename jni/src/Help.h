@@ -6,6 +6,7 @@
 #include "JAM/Audio.h"
 #include "JAM/Texture.h"
 #include "JAM/Text.h"
+#include "JAM/Utilities.h"
 
 /**
 @brief Creates a Help object that inherits JAM_State.

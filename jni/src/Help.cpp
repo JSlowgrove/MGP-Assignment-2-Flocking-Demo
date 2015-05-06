@@ -14,22 +14,36 @@ Help::Help(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	background = new JAM_Texture("img/background.png", renderer);
 
 	/*initialise the text*/
-	text.push_back(new JAM_Text("Hit Delete to Quit", "font/Underdog_tt_hinted.ttf", 25, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("Hit Escape to Return", "font/Underdog_tt_hinted.ttf", 25, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("Commands:", "font/Underdog_tt_hinted.ttf", 25, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Press enter to apply all rules.", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Press 1 to apply rule 1 only.", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Press 2 to apply rule 2 only.", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Press 3 to apply rule 3 only.", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Hold Space to scatter the flock.", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("Rules:", "font/Underdog_tt_hinted.ttf", 25, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Rule 1 = Boids try to fly towards the centre of mass", "font/Underdog_tt_hinted.ttf", 20, 
+	text.push_back(new JAM_Text(
+		"Hit Delete to Quit", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"Hit Escape to Return", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"Commands:", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Press enter to apply all rules.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Press 1 to apply rule 1 only.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Press 2 to apply rule 2 only.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Press 3 to apply rule 3 only.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Hold Space to scatter the flock.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"Rules:", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Rule 1 = Boids try to fly towards the centre of mass", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight),
 		renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("of neighbouring boids.", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Rule 2 = Boids try to keep a small distance away from other", "font/Underdog_tt_hinted.ttf", 20,
+	text.push_back(new JAM_Text(
+		"of neighbouring boids.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Rule 2 = Boids try to keep a small distance away from other", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight),
 		renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("objects (including other boids).", "font/Underdog_tt_hinted.ttf", 20, renderer, 102, 51, 153));
-	text.push_back(new JAM_Text("-Rule 3 = Boids try to match velocity with near boids.", "font/Underdog_tt_hinted.ttf", 20, 
+	text.push_back(new JAM_Text(
+		"objects (including other boids).", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight), renderer, 102, 51, 153));
+	text.push_back(new JAM_Text(
+		"-Rule 3 = Boids try to match velocity with near boids.", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(20.0f, screenHeight),
 		renderer, 102, 51, 153));
 }
 
@@ -97,21 +111,21 @@ void Help::update(float dt)
 void Help::draw()
 {
 	/*display the background*/
-	background->pushToScreen(renderer, 0, 0);
+	background->pushToScreen(renderer, 0, 0, screenWidth, screenHeight);
 
 	/*display text*/
-	text[0]->pushToScreen(screenWidth - 210, 10);
-	text[1]->pushToScreen(10, 10);
-	text[2]->pushToScreen(10, 70);
-	text[3]->pushToScreen(10, 100);
-	text[4]->pushToScreen(10, 130);
-	text[5]->pushToScreen(10, 160);
-	text[6]->pushToScreen(10, 190);
-	text[7]->pushToScreen(10, 220);
-	text[8]->pushToScreen(10, 280);
-	text[9]->pushToScreen(10, 310);
-	text[10]->pushToScreen(110, 340);
-	text[11]->pushToScreen(10, 370);
-	text[12]->pushToScreen(110, 400);
-	text[13]->pushToScreen(10, 430);
+	text[0]->pushToScreen(screenWidth - (int)JAM_Utilities::scaleNumber(210.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
+	text[1]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
+	text[2]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(70.0f, screenHeight));
+	text[3]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(100.0f, screenHeight));
+	text[4]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(130.0f, screenHeight));
+	text[5]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(160.0f, screenHeight));
+	text[6]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(190.0f, screenHeight));
+	text[7]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(220.0f, screenHeight));
+	text[8]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(280.0f, screenHeight));
+	text[9]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(310.0f, screenHeight));
+	text[10]->pushToScreen((int)JAM_Utilities::scaleNumber(110.0f, screenHeight), (int)JAM_Utilities::scaleNumber(340.0f, screenHeight));
+	text[11]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(370.0f, screenHeight));
+	text[12]->pushToScreen((int)JAM_Utilities::scaleNumber(110.0f, screenHeight), (int)JAM_Utilities::scaleNumber(400.0f, screenHeight));
+	text[13]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(430.0f, screenHeight));
 }

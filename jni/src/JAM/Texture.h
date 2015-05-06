@@ -23,18 +23,18 @@ public:
 	/**
 	Constructs a Texture.
 	Creates a Texture using an RGB value. This will create a 1x1 rectangle of that colour that can be scaled.
-	@param std::string A pointer to the renderer.
-	@param int The red value.
-	@param int The green value.
-	@param int The blue value
+	@param renderer A pointer to the renderer.
+	@param r The red value.
+	@param g The green value.
+	@param b The blue value
 	*/
 	JAM_Texture(SDL_Renderer* renderer, int r, int g, int b);
 
 	/**
 	Constructs a Texture
 	Creates a Texture using an image location and a renderer. This is for use with SDL image.
-	@param std::string The location of the image file.
-	@param SDL_Renderer* The renderer.
+	@param fileLocation The location of the image file.
+	@param renderer The renderer.
 	*/
 	JAM_Texture(std::string fileLocation, SDL_Renderer* renderer);
 
@@ -42,9 +42,9 @@ public:
 	Constructs a Texture
 	Creates a Texture using an image location and a renderer. The magenta pixels of this image can
 	represent alpha if needed.
-	@param std::string The location of the image file.
-	@param SDL_Renderer* The renderer.
-	@param bool If true any magenta pixels in the image will be converted to alpha
+	@param fileLocation The location of the image file.
+	@param renderer The renderer.
+	@param magentaAlpha If true any magenta pixels in the image will be converted to alpha
 	*/
 	JAM_Texture(std::string fileLocation, SDL_Renderer* renderer, bool magentaAlpha);
 
@@ -55,65 +55,65 @@ public:
 
 	/**
 	Getter # Returns a pointer to the Texture
-	Returns a pointer to the Texture data.
+	@returns A pointer to the Texture data.
 	*/
 	SDL_Texture* getTexture();
 
 	/**
 	Getter # Returns textureWidth
-	Returns the value of textureWidth.
+	@returns The value of textureWidth.
 	*/
 	int getWidth();
 
 	/**
 	Getter # Returns textureHeight
-	Returns the value of textureHeight.
+	@returns The value of textureHeight.
 	*/
 	int getHeight();
 
 	/**
 	Pushes the image to the Renderer, to the XY Coordinates.
-	@param SDL_Renderer* The renderer.
-	@param int x coordinate of the image.
-	@param int y coordinate of the image.
+	@param renderer The renderer.
+	@param x The x coordinate of the image.
+	@param y The y coordinate of the image.
 	*/
 	void pushToScreen(SDL_Renderer* renderer, int x, int y);
 
 	/**
 	Pushes the image to the Renderer, to the XY Coordinates. This is scaled to the width and height
 	inputed.
-	@param SDL_Renderer* The renderer.
-	@param int x coordinate of the image.
-	@param int y coordinate of the image.
-	@param int width of the scaled image.
-	@param int height of the scaled image.
+	@param renderer The renderer.
+	@param x The x coordinate of the image.
+	@param y The y coordinate of the image.
+	@param width The width of the scaled image.
+	@param height The height of the scaled image.
 	*/
 	void pushToScreen(SDL_Renderer* renderer, int x, int y, int width, int height);
 
 	/**
 	Pushes the image to the Renderer, to the XY Coordinates. Only displays the source rectangle inputed.
-	@param SDL_Renderer* The renderer.
-	@param int x coordinate of the image.
-	@param int y coordinate of the image.
-	@param int x coordinate of the source image.
-	@param int y coordinate of the source image.
-	@param int width of the source image.
-	@param int height of the source image.
+	@param renderer The renderer.
+	@param x The x coordinate of the image.
+	@param y The y coordinate of the image.
+	@param srcX The x coordinate of the source image.
+	@param srcY The y coordinate of the source image.
+	@param width The width of the source image.
+	@param height The height of the source image.
 	*/
 	void pushSpriteToScreen(SDL_Renderer* renderer, int x, int y, int srcX, int srcY, int srcWidth, int srcHeight);
 
 	/**
 	Pushes the image to the Renderer, to the XY Coordinates. Only displays the source rectangle inputed.
 	This is scaled to the width and height inputed.
-	@param SDL_Renderer* The renderer.
-	@param int x coordinate of the image.
-	@param int y coordinate of the image.
-	@param int x coordinate of the source image.
-	@param int y coordinate of the source image.
-	@param int width of the source image.
-	@param int height of the source image.
-	@param int width of the scaled image.
-	@param int height of the scaled image.
+	@param renderer The renderer.
+	@param x The x coordinate of the image.
+	@param y The y coordinate of the image.
+	@param srcX The x coordinate of the source image.
+	@param srcY The y coordinate of the source image.
+	@param srcWidth The width of the source image.
+	@param srcHeight The height of the source image.
+	@param width The width of the scaled image.
+	@param height The height of the scaled image.
 	*/
 	void pushSpriteToScreen(SDL_Renderer* renderer, int x, int y, int srcX, int srcY, int srcWidth, int srcHeight, int width, int height);
 };

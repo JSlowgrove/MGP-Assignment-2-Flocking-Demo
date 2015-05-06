@@ -25,8 +25,8 @@ struct JAM_Vec2
 	/**
 	Constructs a Vec2
 	Constructs the Vec2 setting the values to the input coordinates
-	@param float The inputed x position
-	@param float The inputed y position
+	@param inputX The inputed x position
+	@param inputY The inputed y position
 	*/
 	JAM_Vec2(float inputX, float inputY)
 	{
@@ -37,7 +37,8 @@ struct JAM_Vec2
 	/**
 	Overloads the += operator
 	Overloads the += operator allowing a Vec2 variable to use +=
-	@param Vec2 The input Vec2
+	@param a The input Vec2
+	@returns The new vector.
 	*/
 	JAM_Vec2* operator += (JAM_Vec2 a)
 	{
@@ -49,7 +50,8 @@ struct JAM_Vec2
 	/**
 	Overloads the -= operator
 	Overloads the -= operator allowing a Vec2 variable to use -=
-	@param Vec2 The input Vec2
+	@param a The input Vec2
+	@returns The new vector.
 	*/
 	JAM_Vec2* operator -= (JAM_Vec2 a)
 	{
@@ -63,7 +65,8 @@ struct JAM_Vec2
 /**
 Overloads the - operator
 Overloads the - operator allowing a Vec2 to be inverted
-@param Vec2 The input Vec2
+@param a The input Vec2
+@returns The new vector.
 */
 inline JAM_Vec2 operator - (JAM_Vec2 a)
 {
@@ -76,8 +79,9 @@ inline JAM_Vec2 operator - (JAM_Vec2 a)
 /**
 Overloads the + operator
 Overloads the + operator allowing Vec2's to be added to each other
-@param Vec2 One of the input Vec2's
-@param Vec2 One of the input Vec2's
+@param a One of the input Vec2's
+@param b One of the input Vec2's
+@returns The new vector.
 */
 inline JAM_Vec2 operator + (JAM_Vec2 a, JAM_Vec2 b)
 {
@@ -90,8 +94,9 @@ inline JAM_Vec2 operator + (JAM_Vec2 a, JAM_Vec2 b)
 /**
 Overloads the - operator
 Overloads the - operator allowing Vec2's to be subtracted from each other
-@param Vec2 One of the input Vec2's
-@param Vec2 One of the input Vec2's
+@param a One of the input Vec2's
+@param b One of the input Vec2's
+@returns The new vector.
 */
 inline JAM_Vec2 operator - (JAM_Vec2 a, JAM_Vec2 b)
 {
@@ -104,8 +109,9 @@ inline JAM_Vec2 operator - (JAM_Vec2 a, JAM_Vec2 b)
 /**
 Overloads the / operator
 Overloads the / operator allowing a Vec2 to be divided by a scalar
-@param Vec2 One of the input Vec2's
-@param float the scalar to divide by
+@param a One of the input Vec2's
+@param b the scalar to divide by
+@returns The new vector.
 */
 inline JAM_Vec2 operator / (JAM_Vec2 a, float b)
 {
@@ -118,8 +124,9 @@ inline JAM_Vec2 operator / (JAM_Vec2 a, float b)
 /**
 Overloads the * operator
 Overloads the * operator allowing a Vec2 to be multiplied by a scalar
-@param Vec2 One of the input Vec2's
-@param float the scalar to multiply by
+@param a One of the input Vec2's
+@param b the scalar to multiply by
+@returns The new vector.
 */
 inline JAM_Vec2 operator * (JAM_Vec2 a, float b)
 {

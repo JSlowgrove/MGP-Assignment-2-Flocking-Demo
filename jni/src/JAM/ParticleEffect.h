@@ -49,9 +49,9 @@ public:
 	@param emitter The position that the particle effect emits from.
 	@param emit The new value of the emit boolean.
 	@param renderer A pointer to the renderer.
-	@param int The red value (0-255).
-	@param int The green value (0-255).
-	@param int The blue value (0-255).
+	@param r The red value (0-255).
+	@param g The green value (0-255).
+	@param b The blue value (0-255).
 	*/
 	JAM_ParticleEffect(JAM_Vec2 emitter, bool emit, SDL_Renderer* renderer, int r, int g, int b);
 

@@ -42,44 +42,44 @@ public:
 	/**
 	Constructs a Text Texture.
 	Creates a Text Texture using an image location and a renderer. Font size and colour will be default (size 10 and black).
-	@param std::string The text to display.
-	@param std::string The location of the font file.
-	@param SDL_Renderer* The renderer.
+	@param text The text to display.
+	@param fontLocation The location of the font file.
+	@param renderer The renderer.
 	*/
 	JAM_Text(std::string text, std::string fontLocation, SDL_Renderer* renderer);
 
 	/**
 	Constructs a Text Texture.
 	Creates a Text Texture using an image location and a renderer. Font colour will be default (black). Font size will be set to the input.
-	@param std::string The text to display.
-	@param std::string The location of the font file.
-	@param int The size of the font.
-	@param SDL_Renderer* The renderer.
+	@param text The text to display.
+	@param fontLocation The location of the font file.
+	@param fontSize The size of the font.
+	@param renderer The renderer.
 	*/
 	JAM_Text(std::string text, std::string fontLocation, int fontSize, SDL_Renderer* renderer);
 
 	/**
 	Constructs a Text Texture.
 	Creates a Text Texture using an image location and a renderer. Font size will be default (size 10). Colour will be set to the input.
-	@param std::string The text to display.
-	@param std::string The location of the font file.
-	@param SDL_Renderer* The renderer.
-	@param int The value of red. (0-255)
-	@param int The value of green. (0-255)
-	@param int The value of blue. (0-255)
+	@param text The text to display.
+	@param fontLocation The location of the font file.
+	@param renderer The renderer.
+	@param r The value of red. (0-255)
+	@param g The value of green. (0-255)
+	@param b The value of blue. (0-255)
 	*/
 	JAM_Text(std::string text, std::string fontLocation, SDL_Renderer* renderer, int r, int g, int b);
 
 	/**
 	Constructs a Text Texture.
 	Creates a Text Texture using an image location and a renderer.
-	@param std::string The text to display.
-	@param std::string The location of the font file.
-	@param int The size of the font.
-	@param SDL_Renderer* The renderer.
-	@param int The value of red. (0-255)
-	@param int The value of green. (0-255)
-	@param int The value of blue. (0-255)
+	@param text The text to display.
+	@param fontLocation The location of the font file.
+	@param fontSize The size of the font.
+	@param renderer The renderer.
+	@param r The value of red. (0-255)
+	@param g The value of green. (0-255)
+	@param b The value of blue. (0-255)
 	*/
 	JAM_Text(std::string text, std::string fontLocation, int fontSize, SDL_Renderer* renderer, int r, int g, int b);
 
@@ -90,34 +90,34 @@ public:
 
 	/**
 	Pushes the image to the Renderer, to the XY Coordinates. This is scaled to the width and height	inputed.
-	@param int x coordinate of the image.
-	@param int y coordinate of the image.
+	@param x The x coordinate of the image.
+	@param y The y coordinate of the image.
 	*/
 	void pushToScreen(int x, int y);
 
 	/**
 	Sets the colour of the text.
-	@param int The value of red. (0-255)
-	@param int The value of green. (0-255)
-	@param int The value of blue. (0-255)
+	@param r The value of red. (0-255)
+	@param g The value of green. (0-255)
+	@param b The value of blue. (0-255)
 	*/
 	void setColour(int r, int g, int b);
 
 	/**
 	Sets the font size of the text.
-	@param int The font size of the text.
+	@param fontSize The font size of the text.
 	*/
 	void setFontSize(int fontSize);
 
 	/**
 	Sets the font of the text.
-	@param std::string The location of the font file.
+	@param fontLocation The location of the font file.
 	*/
 	void setFont(std::string fontLocation);
 
 	/**
 	Sets the text.
-	@param std::string The text to display.
+	@param text The text to display.
 	*/
 	void setText(std::string text);
 };

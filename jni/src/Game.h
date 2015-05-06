@@ -8,6 +8,7 @@
 #include "JAM/Audio.h"
 #include "JAM/Text.h"
 #include "JAM/Flocking.h"
+#include "JAM/Utilities.h"
 
 /**
 @brief Creates an Game object that inherits State and runs the Game.

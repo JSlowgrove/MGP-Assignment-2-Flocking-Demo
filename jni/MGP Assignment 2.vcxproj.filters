@@ -60,6 +60,9 @@
     <ClCompile Include="src\Help.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\JAM\Utilities.cpp">
+      <Filter>JAM Files\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\JAM\Audio.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="src\Help.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JAM\Utilities.h">
+      <Filter>JAM Files\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
