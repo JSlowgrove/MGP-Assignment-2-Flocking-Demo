@@ -3,16 +3,17 @@
 /**************************************************************************************************************/
 
 /*Constructs a ParticleEffect Object.*/
-JAM_ParticleEffect::JAM_ParticleEffect(std::string fileName, JAM_Vec2 emitter, bool emit, SDL_Renderer* renderer)
+JAM_ParticleEffect::JAM_ParticleEffect(std::string fileName, JAM_Vec2 emitter, bool emit, SDL_Renderer* renderer, int screenHeight)
 {
 	/*initialize random seed: */
 	srand((unsigned int)time(NULL));
 
 	/*store the variables*/
 	this->emitter = emitter;
+	this->screenHeight = screenHeight;
 
 	/*initialise the move speed*/
-	moveSpeed = 1.0f;
+	moveSpeed = JAM_Utilities::scaleNumber(1.0f, screenHeight);
 
 	/*set the value of emit*/
 	this->emit = emit;
@@ -36,7 +37,7 @@ JAM_ParticleEffect::JAM_ParticleEffect(JAM_Vec2 emitter, bool emit, SDL_Renderer
 	this->emitter = emitter;
 
 	/*initialise the move speed*/
-	moveSpeed = 1.0f;
+	moveSpeed = JAM_Utilities::scaleNumber(1.0f, screenHeight);
 
 	/*set the value of emit*/
 	this->emit = emit;
@@ -120,21 +121,21 @@ void JAM_ParticleEffect::makeNewParticles()
 	/*if the particle should emit*/
 	if (emit)
 	{
-		/*get the number of particles to initialise between 0 and 4*/
-		int numberOfParticles = (rand() % 5);
+		/*get the number of particles to initialise between 0 and 4 (before scaling)*/
+		int numberOfParticles = (rand() % (int)JAM_Utilities::scaleNumber(5.0f, screenHeight));
 
 		/*loop for all of the particles to create*/
 		for (int i = 0; i < numberOfParticles; i++)
 		{
-			/*get the scale of the particle, between 1 and 5f*/
-			float scaleValue = (float)((rand() % 5) + 1);
+			/*get the scale of the particle, between 1 and 5 (before scaling)*/
+			float scaleValue = (float)((rand() % (int)JAM_Utilities::scaleNumber(4.0f, screenHeight)) + 1);
 
-			/*get the direction of the particle between -15f and 15f*/
+			/*get the direction of the particle between -15f and 15f (before scaling)*/
 			JAM_Vec2 direction;
-			direction.x = (float)((rand() % 30) + 1);
-			direction.y = (float)((rand() % 30) + 1);
-			direction.x -= 15.0f;
-			direction.y -= 15.0f;
+			direction.x = (float)((rand() % (int)JAM_Utilities::scaleNumber(30.0f, screenHeight)) + 1);
+			direction.y = (float)((rand() % (int)JAM_Utilities::scaleNumber(30.0f, screenHeight)) + 1);
+			direction.x -= JAM_Utilities::scaleNumber(30.0f, screenHeight) * 0.5f;
+			direction.y -= JAM_Utilities::scaleNumber(30.0f, screenHeight) * 0.5f;
 
 			/*push a new particle to the vector*/
 			particles.push_back(new JAM_Particle(texture, scaleValue, direction, moveSpeed, emitter));

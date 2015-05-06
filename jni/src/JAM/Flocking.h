@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Particle.h"
 #include "Vec2.h"
+#include "Utilities.h"
 
 /**
 @brief Creates a Flocking object.
@@ -24,6 +25,8 @@ private:
 	int yBoundary;
 	/**The max velocity*/
 	float maxVel;
+	/**The screen height*/
+	int screenHeight;
 
 	/**
 	Applies Boid Rule 1.
@@ -67,8 +70,9 @@ public:
 	@param xBoundary The rough x boundary of the boids.
 	@param yBoundary The rough y boundary of the boids.
 	@param maxVel The maximum velocity of the boids.
+	@param screenHeight The screen height.
 	*/
-	JAM_Flocking(int numberOfBoids, JAM_Texture* texture, int xBoundary, int yBoundary, float maxVel);
+	JAM_Flocking(int numberOfBoids, JAM_Texture* texture, int xBoundary, int yBoundary, float maxVel, int screenHeight);
 
 	/**
 	Destructs an Flocking object.

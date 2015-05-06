@@ -14,7 +14,9 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Help.cpp" />
     <ClCompile Include="src\JAM\Audio.cpp" />
+    <ClCompile Include="src\JAM\Button.cpp" />
     <ClCompile Include="src\JAM\CollisionDetection.cpp" />
+    <ClCompile Include="src\JAM\Entity.cpp" />
     <ClCompile Include="src\JAM\Flocking.cpp" />
     <ClCompile Include="src\JAM\Particle.cpp" />
     <ClCompile Include="src\JAM\ParticleEffect.cpp" />
@@ -29,7 +31,9 @@
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Help.h" />
     <ClInclude Include="src\JAM\Audio.h" />
+    <ClInclude Include="src\JAM\Button.h" />
     <ClInclude Include="src\JAM\CollisionDetection.h" />
+    <ClInclude Include="src\JAM\Entity.h" />
     <ClInclude Include="src\JAM\Flocking.h" />
     <ClInclude Include="src\JAM\Particle.h" />
     <ClInclude Include="src\JAM\ParticleEffect.h" />

@@ -22,6 +22,20 @@ private:
 	/**The background image*/
 	JAM_Texture* background;
 
+	/**
+	Handles the Windows Game input.
+	@param incomingEvent A reference to the incoming SDL event.
+	@returns If false then quit the Game State.
+	*/
+	bool windowsInput(SDL_Event& incomingEvent);
+
+	/**
+	Handles the Android Game input.
+	@param incomingEvent A reference to the incoming SDL event.
+	@returns If false then quit the Game State.
+	*/
+	bool androidInput(SDL_Event& incomingEvent);
+
 public:
 	/**
 	Constructs an Help object.

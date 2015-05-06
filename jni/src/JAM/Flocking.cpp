@@ -4,16 +4,19 @@
 /**************************************************************************************************************/
 
 /*Constructs the flocking object*/
-JAM_Flocking::JAM_Flocking(int numberOfBoids, JAM_Texture* texture, int xBoundary, int yBoundary, float maxVel)
+JAM_Flocking::JAM_Flocking(int numberOfBoids, JAM_Texture* texture, int xBoundary, int yBoundary, float maxVel, int screenHeight)
 {
 	/*initialize random seed*/
 	srand((unsigned int)time(NULL));
+
+	/*initialise the size of the screen height*/
+	this->screenHeight = screenHeight;
 
 	/*initialise a the number of Boid objects*/
 	for (int i = 0; i < numberOfBoids; i++)
 	{
 		/*creates a Boid at a random position on the screen*/
-		boids.push_back(new JAM_Particle(texture, 4.0f, JAM_Vec2(0.0f, 0.0f), maxVel, 
+		boids.push_back(new JAM_Particle(texture, JAM_Utilities::scaleNumber(4.0f, screenHeight), JAM_Vec2(0.0f, 0.0f), maxVel, 
 			JAM_Vec2((float)(rand() % xBoundary), (float)(rand() % yBoundary))));
 	}
 

@@ -63,6 +63,12 @@
     <ClCompile Include="src\JAM\Utilities.cpp">
       <Filter>JAM Files\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\JAM\Entity.cpp">
+      <Filter>JAM Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JAM\Button.cpp">
+      <Filter>JAM Files\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\JAM\Audio.h">
@@ -102,6 +108,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\JAM\Utilities.h">
+      <Filter>JAM Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JAM\Entity.h">
+      <Filter>JAM Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JAM\Button.h">
       <Filter>JAM Files\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

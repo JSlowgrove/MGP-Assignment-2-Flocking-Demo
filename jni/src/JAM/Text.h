@@ -4,6 +4,7 @@
 #include <SDL_ttf.h>
 #include <iostream>
 #include <string>
+#include "Vec2.h"
 
 /**
 @brief Creates a Text Texture for use with a renderer
@@ -120,4 +121,10 @@ public:
 	@param text The text to display.
 	*/
 	void setText(std::string text);
+
+	/**
+	Getter # Gets the dimensions of the Text.
+	@returns The dimensions of the Text.
+	*/
+	JAM_Vec2 getDimensions();
 };

@@ -9,6 +9,7 @@
 #include "JAM/Text.h"
 #include "JAM/Flocking.h"
 #include "JAM/Utilities.h"
+#include "JAM/Button.h"
 
 /**
 @brief Creates an Game object that inherits State and runs the Game.
@@ -26,6 +27,8 @@ private:
 	std::vector<JAM_Text*> text;
 	/*What to do with the rule (1 == possitve, 0 = neutral, -1 == negative)*/
 	int applyRule1, applyRule2, applyRule3, current;
+	/**The Buttons*/
+	std::vector<JAM_Button*> buttons;
 
 	/**
 	Handles the Windows Game input.

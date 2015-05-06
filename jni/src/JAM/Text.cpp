@@ -199,3 +199,12 @@ void JAM_Text::setText(std::string text)
 	/*recreate the text texture*/
 	createTextTexture();
 }
+
+/**************************************************************************************************************/
+
+/*Gets the dimensions of thee Text.*/
+JAM_Vec2 JAM_Text::getDimensions()
+{
+	/*return the dimensions*/
+	return JAM_Vec2((float)textureWidth, (float)textureHeight);
+}

@@ -6,6 +6,7 @@
 #include <string>
 #include "Particle.h"
 #include "Vec2.h"
+#include "Utilities.h"
 
 /**A definition for the max number of particles*/
 #define MAX_NUMBER_OF_PARTICLES 100
@@ -28,6 +29,8 @@ private:
 	JAM_Vec2 emitter;
 	/**A boolean for if the ParticleEffect should emit*/
 	bool emit;
+	/**The screen height*/
+	int screenHeight;
 
 	/**
 	Creates the new Particle objects.
@@ -41,8 +44,9 @@ public:
 	@param emitter The position that the particle effect emits from.
 	@param emit The new value of the emit boolean.
 	@param renderer A pointer to the renderer.
+	@param screenHeight The screen height.
 	*/
-	JAM_ParticleEffect(std::string fileName, JAM_Vec2 emitter, bool emit, SDL_Renderer* renderer);
+	JAM_ParticleEffect(std::string fileName, JAM_Vec2 emitter, bool emit, SDL_Renderer* renderer, int screenHeight);
 
 	/**
 	Constructs a ParticleEffect Object.

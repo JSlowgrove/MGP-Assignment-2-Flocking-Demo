@@ -15,7 +15,7 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	boidTexture = new JAM_Texture(renderer, 255, 255, 255);
 
 	/*initialise the flocking object*/
-	flocking = new JAM_Flocking(25, boidTexture, screenWidth, screenHeight, 25.0f);
+	flocking = new JAM_Flocking(25, boidTexture, screenWidth, screenHeight, 25.0f, screenHeight);
 
 #ifdef _WIN32
 	
@@ -25,16 +25,11 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 		(int)JAM_Utilities::scaleNumber(25.0f, screenHeight), 
 		renderer, 0, 0, 0));
 
-	text.push_back(new JAM_Text(
-		"Hit Escape for Help", "font/Underdog_tt_hinted.ttf",
-		(int)JAM_Utilities::scaleNumber(25.0f, screenHeight),
-		renderer, 0, 0, 0));
-
 #elif __ANDROID__
 
 	/*initialise the text*/
 	text.push_back(new JAM_Text(
-		"Press the screen to change the Boids behaviour", "font/Underdog_tt_hinted.ttf",
+		"Hit Back to Quit", "font/Underdog_tt_hinted.ttf",
 		(int)JAM_Utilities::scaleNumber(25.0f, screenHeight), 
 		renderer, 0, 0, 0));
 
@@ -43,6 +38,99 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 
 	/*initialise the current rule setting*/
 	current = 0;
+
+	/*create a texture for the buttons*/
+	boidTexture = new JAM_Texture(renderer, 135, 199, 46);
+
+	/*push back button 0*/
+	buttons.push_back(new JAM_Button(boidTexture,
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(70.0f, screenHeight),
+		"All Rules",
+		"font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(24.0f, screenHeight),
+		0,
+		0,
+		0,
+		renderer,
+		JAM_Utilities::scaleNumber(5.0f, screenHeight),
+		JAM_Utilities::scaleNumber(150.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight)));
+
+	/*push back button 1*/
+	buttons.push_back(new JAM_Button(boidTexture, 
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(130.0f, screenHeight),
+		"Rule 1",
+		"font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(24.0f, screenHeight),
+		0,
+		0,
+		0,
+		renderer,
+		JAM_Utilities::scaleNumber(5.0f, screenHeight),
+		JAM_Utilities::scaleNumber(150.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight)));
+
+	/*push back button 2*/
+	buttons.push_back(new JAM_Button(boidTexture,
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(190.0f, screenHeight),
+		"Rule 2",
+		"font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(24.0f, screenHeight),
+		0,
+		0,
+		0,
+		renderer,
+		JAM_Utilities::scaleNumber(5.0f, screenHeight),
+		JAM_Utilities::scaleNumber(150.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight)));
+
+	/*push back button 3*/
+	buttons.push_back(new JAM_Button(boidTexture,
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(250.0f, screenHeight),
+		"Rule 3",
+		"font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(24.0f, screenHeight),
+		0,
+		0,
+		0,
+		renderer,
+		JAM_Utilities::scaleNumber(5.0f, screenHeight),
+		JAM_Utilities::scaleNumber(150.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight)));
+
+	/*push back button 4*/
+	buttons.push_back(new JAM_Button(boidTexture,
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(310.0f, screenHeight),
+		"Scatter",
+		"font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(24.0f, screenHeight),
+		0,
+		0,
+		0,
+		renderer,
+		JAM_Utilities::scaleNumber(5.0f, screenHeight),
+		JAM_Utilities::scaleNumber(150.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight)));
+
+	/*push back button 5*/
+	buttons.push_back(new JAM_Button(boidTexture,
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		"Help",
+		"font/Underdog_tt_hinted.ttf",
+		(int)JAM_Utilities::scaleNumber(24.0f, screenHeight),
+		0,
+		0,
+		0,
+		renderer,
+		JAM_Utilities::scaleNumber(5.0f, screenHeight),
+		JAM_Utilities::scaleNumber(150.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight)));
 }
 
 /**************************************************************************************************************/
@@ -61,6 +149,10 @@ Game::~Game()
 	{
 		delete message;
 	}
+	for (auto button : buttons)
+	{
+		delete button;
+	}
 }
 
 /**************************************************************************************************************/
@@ -72,6 +164,57 @@ bool Game::input()
 	SDL_Event incomingEvent;
 	while (SDL_PollEvent(&incomingEvent))
 	{
+		switch (incomingEvent.type)
+		{
+		case SDL_QUIT: /*If quit is pressed, end the game loop*/
+
+			SDL_Log("Exiting Main Loop");
+			return false;
+			break;
+		}
+
+		/*handle button 0 inputs (all rules)*/
+		if (buttons[0]->input(incomingEvent))
+		{
+			/*activate all rules*/
+			current = 0;
+		}
+
+		/*handle button 1 inputs (rule 1)*/
+		if (buttons[1]->input(incomingEvent))
+		{
+			/*activate rule 1 and deactivate all other rules*/
+			current = 1;
+		}
+
+		/*handle button 2 inputs (rule 2)*/
+		if (buttons[2]->input(incomingEvent))
+		{
+			/*activate rule 2 and deactivate all other rules*/
+			current = 2;
+		}
+
+		/*handle button 3 inputs (rule 3)*/
+		if (buttons[3]->input(incomingEvent))
+		{
+			/*activate rule3 and deactivate all other rules*/
+			current = 3;
+		}
+
+		/*handle button 4 inputs (scatter)*/
+		if (buttons[4]->input(incomingEvent))
+		{
+			/*activate rule 2 and 3 and invert rule 1*/
+			current = 4;
+		}
+
+		/*handle button 5 inputs (help)*/
+		if (buttons[5]->input(incomingEvent))
+		{
+			/*open up the help*/
+			stateManager->addState(new Help(stateManager, renderer, screenWidth, screenHeight, music));
+			return true;
+		}
 
 #ifdef __ANDROID__
 
@@ -84,7 +227,6 @@ bool Game::input()
 		return windowsInput(incomingEvent);
 
 #endif
-
 	}
 	return true;
 }
@@ -96,71 +238,17 @@ bool Game::windowsInput(SDL_Event& incomingEvent)
 {
 	switch (incomingEvent.type)
 	{
-	case SDL_QUIT: /*If quit is pressed, end the game loop*/
-
-		SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
-		return false;
-		break;
-
 	case SDL_KEYDOWN:
 
 		switch (incomingEvent.key.keysym.sym)
 		{
-		case SDLK_DELETE: /*If Delete is pressed, end the game loop*/
+		case SDLK_DELETE: /*If Escape is pressed, end the game loop*/
 
-			SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
+			SDL_Log("Exiting Main Loop");
 			return false;
-			break;
-
-		case SDLK_ESCAPE: /*If Escape is pressed, open menu*/
-			/*open up the help*/
-			stateManager->addState(new Help(stateManager, renderer, screenWidth, screenHeight, music));
-			return true;
-			break;
-
-		case SDLK_RETURN: /*If Enter is pressed all rules are active*/
-
-			/*activate all rules*/
-			current = 0;
-			break;
-
-		case SDLK_1: /*If 1 is pressed only rule 1 is active*/
-
-			/*activate rule 1 and deactivate all other rules*/
-			current = 1;
-			break;
-
-		case SDLK_2: /*If 2 is pressed only rule 2 is active*/
-
-			/*activate rule 2 and deactivate all other rules*/
-			current = 2;
-			break;
-
-		case SDLK_3: /*If 3 is pressed only rule 3 is active*/
-
-			/*activate rule3 and deactivate all other rules*/
-			current = 3;
-			break;
-
-		case SDLK_SPACE: /*If Space is pressed scatter the flock*/
-
-			/*activate rule 2 and 3 and invert rule 1*/
-			current = 4;
 			break;
 		}
 		break;
-
-	case SDL_KEYUP:
-
-		switch (incomingEvent.key.keysym.sym)
-		{
-
-		case SDLK_SPACE: /*If Space is released activate all rules*/
-
-			/*activate all rules*/
-			current = 0;
-			break;
-		}
 	}
 	return true;
 }
@@ -172,29 +260,13 @@ bool Game::androidInput(SDL_Event& incomingEvent)
 {
 	switch (incomingEvent.type)
 	{
-	case SDL_QUIT: /*If quit is pressed, end the game loop*/
-
-		SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
-		return false;
-		break;
-
-	case SDL_FINGERDOWN:
-
-		/*update the current rule settings*/
-		current++;
-		if (current > 4)
-		{
-			current = 0;
-		}
-		break;
-
 	case SDL_KEYDOWN:
 
 		switch (incomingEvent.key.keysym.sym)
 		{
 		case SDLK_AC_BACK: /*If Back is pressed on the phone, end the game loop*/
 
-			SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Exiting Main Loop");
+			SDL_Log("Exiting Main Loop");
 			return false;
 			break;
 		}
@@ -271,17 +343,13 @@ void Game::draw()
 	/*draw the flocking object*/
 	flocking->draw(renderer);
 
-#ifdef _WIN32
-
 	/*display text*/
 	text[0]->pushToScreen(screenWidth - (int)JAM_Utilities::scaleNumber(210.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
-	text[1]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
 
-#elif __ANDROID__
-
-	/*display text*/
-	text[0]->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
-
-#endif
-
+	/*display buttons*/
+	for (auto button : buttons)
+	{
+		button->draw(renderer);
+		button->drawText(renderer);
+	}
 }

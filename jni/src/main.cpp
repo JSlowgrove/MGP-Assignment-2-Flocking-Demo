@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) //Check SDL initialisation
 	{
 		//Failed initialisation
-		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Failed to initialise SDL");
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialise SDL");
 		return -1;
 	}
 
@@ -31,17 +31,16 @@ int main(int argc, char *argv[])
 	if (TTF_Init() < 0) /*Check SDL_ttf initialisation*/
 	{
 		/*Failed initialisation*/
-		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Failed to initialise SDL_ttf");
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialise SDL_ttf");
 		return -1;
 	}
 
-	Mix_Init(MIX_INIT_OGG);
-
 	/*Initialise SDL_mixer*/
+	Mix_Init(MIX_INIT_OGG);
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 	{
 		/*Failed initialisation*/
-		SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Failed to initialise SDL_Mixer");
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialise SDL_Mixer");
 		return -1;
 	}
 
@@ -50,7 +49,7 @@ int main(int argc, char *argv[])
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
 		/*Failed initialisation*/
-		SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_ERROR, "Failed to initialise SDL_image");
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialise SDL_image");
 		return -1;
 	}
 
