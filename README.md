@@ -33,4 +33,4 @@ http://creativecommons.org/licenses/by/3.0/
 Underdog Font:  
 http://www.dafont.com/underdog.font?l[]=10    
   
-This is the code for my second MGP Assignment.  
+This is the code for my second MGP Assignment Flocking Demo.  
