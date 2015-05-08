@@ -11,15 +11,16 @@
 /**
 @brief Creates a Help object that inherits JAM_State.
 Creates a Help object that inherits JAM_State and runs the Help.
+@author Jamie Slowgrove
 */
 class Help : public JAM_State
 {
 private:
-	/**The text*/
+	/**The text.*/
 	std::vector<JAM_Text *> text;
-	/**A pointer to the music*/
+	/**A pointer to the music.*/
 	JAM_Audio* music;
-	/**The background image*/
+	/**The background image.*/
 	JAM_Texture* background;
 
 	/**
@@ -38,7 +39,7 @@ private:
 
 public:
 	/**
-	Constructs an Help object.
+	Constructs the Help object.
 	@param stateManager A pointer to the StateManager.
 	@param renderer A pointer to the renderer.
 	@param screenWidth The screen width.
@@ -48,7 +49,7 @@ public:
 	Help(JAM_StateManager* stateManager, SDL_Renderer* renderer, int screenWidth, int screenHeight, JAM_Audio* music);
 
 	/**
-	Destructs a Help object.
+	Destructs the Help object.
 	*/
 	~Help();
 

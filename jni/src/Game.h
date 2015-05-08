@@ -13,6 +13,7 @@
 
 /**
 @brief Creates an Game object that inherits State and runs the Game.
+@author Jamie Slowgrove
 */
 class Game : public JAM_State
 {
@@ -21,13 +22,13 @@ private:
 	JAM_Audio* music;
 	/**A pointer to a Flocking object.*/
 	JAM_Flocking* flocking;
-	/**A pointer for the boids texture*/
+	/**A pointer for the boids texture.*/
 	JAM_Texture* boidTexture;
-	/**The Text*/
+	/**The Text.*/
 	std::vector<JAM_Text*> text;
-	/*What to do with the rule (1 == possitve, 0 = neutral, -1 == negative)*/
+	/*What to do with the rule. (1 == possitve, 0 = neutral, -1 == negative)*/
 	int applyRule1, applyRule2, applyRule3, current;
-	/**The Buttons*/
+	/**The Buttons.*/
 	std::vector<JAM_Button*> buttons;
 
 	/**
@@ -46,7 +47,7 @@ private:
 
 public:
 	/**
-	Constructs a Game object.
+	Constructs the Game object.
 	@param stateManager A pointer to the StateManager.
 	@param renderer A pointer to the renderer.
 	@param screenWidth The screen width.
@@ -55,7 +56,7 @@ public:
 	Game(JAM_StateManager* stateManager, SDL_Renderer* renderer, int screenWidth, int screenHeight);
 
 	/**
-	Destructs an Game object.
+	Destructs the Game object.
 	*/
 	~Game();
 
